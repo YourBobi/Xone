@@ -1,0 +1,43 @@
+{% extends "short_link/shared/base.html" %}
+
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div>
+    <h1>Personal room</h1>
+    <h3>Name: {{ user }}</h3>
+    <h3>id: {{ user.id }}</h3>
+
+</div>
+<div>
+    <table id="tableID" class="fl-table" >
+        <thead>
+            <tr>
+                <th>long url</th>
+                <th>short url</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for el in data %}
+                <tr>
+                    <td>
+                        <a href="http://{{ el.long_url }}">
+                            {{ el.long_url }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="http://{{ el.full_url }}">
+                            {{ el.full_url }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tbody> </tbody>
+    </table>
+</div>
+{% endblock %}

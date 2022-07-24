@@ -1,0 +1,55 @@
+{% extends "short_link/shared/base.html" %}
+
+{% load static %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/table.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<form method="post">
+<div >
+
+
+    <div class="panel-body">
+        <div class="panel-footer">
+         <span id="url-result">Enter the URL above and click submit!</span>
+        </div>
+        <input type="url" name="url" id="url" class="form-control input-sm" placeholder="http://www.facebook.com"
+        required />
+
+        <select name="algorithm" id="algorithm">
+          <option>md5</option>
+          <option>sha256</option>
+        </select>
+
+        {% csrf_token %}
+        <button id="submitButton" class="btn btn-primary">Submit</button>
+    </div>
+
+
+
+    <div class="fl-table">
+    <table id="tableID">
+            <thead>
+                <tr>
+                    <th>long link</th>
+                    <th>short link</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <td>
+                        <a href="http://{{ short_link }}">{{ short_link }}</a></td>
+                    <td>
+                         <a href="http://{{ long_link }}">{{ long_link }}</a></td>
+
+                </tr>
+            </tbody>
+            <tbody> </tbody>
+    </table>
+    </div>
+</div>
+</form>
+{% endblock %}

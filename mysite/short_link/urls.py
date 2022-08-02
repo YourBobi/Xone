@@ -10,5 +10,5 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(), name="logout"),
     path("made/urls/", views.url, name="url"),
     path("user/", views.account, name="account"),
-    path('url/<str:short_url>', views.open_long_url, name='long_url'),
+    path('yourdomain/<str:short_url>', views.open_long_url, name='long_url'),
 ]

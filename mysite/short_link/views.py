@@ -30,7 +30,7 @@ def url(request):
     """
     is_valid = False
     if request.method == "POST":
-        user_url = request.POST.get('url')
+        long_url = request.POST.get('url')
         algorithm = request.POST.get("algorithm", None)
 
         if algorithm == "md5":
@@ -41,19 +41,19 @@ def url(request):
             strategy = RandomStrategy()
 
         while not is_valid:
-            short_url = strategy.get_short_url(user_url)
+            short_url = strategy.get_short_url(long_url)
             if short_url is None:
                 is_valid = False
             else:
                 is_valid = _is_short_url_valid(short_url)
 
         first_part = request.get_host()
-        full_url = f"{first_part}/url/{short_url}"
+        full_url = f"http://{first_part}/yourdomain/{short_url}"
 
-        ShortURL.objects.create(long_url=user_url, short_url=short_url, full_url=full_url, user_id=request.user)
+        ShortURL.objects.create(long_url=long_url, short_url=short_url, full_url=full_url, user_id=request.user)
 
         return render(request, 'short_link/general_pages/url.html', context={"short_link": full_url,
-                                                                             "long_link": user_url})
+                                                                             "long_link": long_url})
 
     return render(request, 'short_link/general_pages/url.html', context={"short_link": "",
                                                                          "long_link": ""})

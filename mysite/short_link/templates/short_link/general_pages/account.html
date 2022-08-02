@@ -25,12 +25,12 @@
             {% for el in data %}
                 <tr>
                     <td>
-                        <a href="http://{{ el.long_url }}">
+                        <a href="{{ el.long_url }}">
                             {{ el.long_url }}
                         </a>
                     </td>
                     <td>
-                        <a href="http://{{ el.full_url }}">
+                        <a href="{{ el.full_url }}">
                             {{ el.full_url }}
                         </a>
                     </td>
